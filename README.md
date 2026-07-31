@@ -38,3 +38,8 @@ Work in progress — bootcamp capstone project.
 - Mask classes are more skewed, with violations (NO-Mask) nearly double the compliant instances (Mask).
 - `vehicle` and `Mask` are the smallest classes overall and are expected to show weaker detection performance due to fewer training examples.
 - No `NO-Gloves` or `NO-Goggles` classes exist in this dataset; project scope is accordingly narrowed to **hardhat, mask, and safety vest** compliance.
+**Class distribution:**
+![Class Distribution](notebooks/assets/class_distribution.png)
+
+**Sample annotated images:**
+![Sample Annotations](notebooks/assets/sample_annotations.png)
