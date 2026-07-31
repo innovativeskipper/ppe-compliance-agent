@@ -43,3 +43,8 @@ Work in progress — bootcamp capstone project.
 
 **Sample annotated images:**
 ![Sample Annotations](notebooks/assets/sample_annotations.png)
+## Model Training
+- Base model: YOLOv8n (COCO-pretrained), fine-tuned on the PPE dataset
+- Epochs: 40, image size: 640
+- Results: mAP50 = 0.77, mAP50-95 = 0.46
+- Tracked via Weights & Biases
