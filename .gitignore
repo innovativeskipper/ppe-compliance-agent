@@ -9,3 +9,4 @@ __pycache__/
 *.json
 !package.json
 compliance_report.txt
+.agents/

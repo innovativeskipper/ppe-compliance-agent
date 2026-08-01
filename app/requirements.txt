@@ -1,0 +1,7 @@
+streamlit
+ultralytics
+huggingface_hub
+litellm
+opencv-python-headless
+pillow
+python-dotenv
