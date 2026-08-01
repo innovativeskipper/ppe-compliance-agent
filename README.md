@@ -48,3 +48,10 @@ Work in progress — bootcamp capstone project.
 - Epochs: 40, image size: 640
 - Results: mAP50 = 0.77, mAP50-95 = 0.46
 - Tracked via Weights & Biases
+## Multi-Agent Alerting System
+Three-stage agentic pipeline for violation triage and alerting, implemented via direct LLM orchestration (Groq API, Llama 3.3 70B):
+- **Triage Agent**: assesses violation severity against a defined safety policy
+- **Routing & Notification Agent**: determines recipient and drafts a tailored alert message
+- **Compliance Reporting Agent**: synthesizes batch violation data into trend summaries and recommendations
+
+Note: CrewAI was evaluated for this pipeline but a framework-level compatibility bug with the Groq provider (a caching parameter incompatibility) led to implementing the same three-agent architecture via direct sequential LLM calls for reliability.

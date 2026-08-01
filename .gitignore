@@ -5,3 +5,7 @@ models/*.pt
 __pycache__/
 .env
 .ipynb_checkpoints/
+# Add to .gitignore
+*.json
+!package.json
+compliance_report.txt
