@@ -55,3 +55,15 @@ Three-stage agentic pipeline for violation triage and alerting, implemented via 
 - **Compliance Reporting Agent**: synthesizes batch violation data into trend summaries and recommendations
 
 Note: CrewAI was evaluated for this pipeline but a framework-level compatibility bug with the Groq provider (a caching parameter incompatibility) led to implementing the same three-agent architecture via direct sequential LLM calls for reliability.
+## Deployment
+Live app: (https://ppe-compliance-agent.streamlit.app/)
+
+**Architecture:**
+1. User uploads an image via Streamlit interface
+2. YOLOv8 (loaded from Hugging Face Hub) detects PPE compliance/violations
+3. Detected violations are processed through a multi-agent pipeline:
+   - Triage Agent assesses severity against safety policy
+   - Routing Agent determines recipient and drafts alert message
+4. Session analytics track violation patterns across the session
+
+**Tech stack:** YOLOv8 (Ultralytics) · Groq (Llama 3.3 70B) via LiteLLM · Streamlit · Hugging Face Hub · Streamlit Community Cloud
