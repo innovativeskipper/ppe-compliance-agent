@@ -9,6 +9,8 @@ from PIL import Image
 import numpy as np
 import cv2
 from dotenv import load_dotenv
+if "violation_history" not in st.session_state:
+    st.session_state.violation_history = []
 load_dotenv()
 st.set_page_config(page_title="PPE Compliance Agent", layout="wide")
 
@@ -112,6 +114,11 @@ if uploaded_file:
         if cls_name in VIOLATION_CLASSES:
             violations.append({'violation_type': cls_name, 'confidence': round(conf, 3)})
 
+    for v in violations:
+        st.session_state.violation_history.append({
+            'type': v['violation_type'],
+            'confidence': v['confidence']
+        })
     with col2:
         st.subheader(f"Violations Detected: {len(violations)}")
         if violations:
@@ -136,3 +143,29 @@ if uploaded_file:
                 time.sleep(1)
 else:
     st.info("Upload an image to begin PPE compliance detection.")
+st.divider()
+st.subheader("📊 Session Analytics")
+
+if st.session_state.violation_history:
+    import pandas as pd
+
+    df = pd.DataFrame(st.session_state.violation_history)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.write("**Violations by Type**")
+        type_counts = df['type'].value_counts()
+        st.bar_chart(type_counts)
+
+    with col2:
+        st.write("**Summary**")
+        st.metric("Total Violations (this session)", len(df))
+        st.write("Average confidence by type:")
+        st.dataframe(df.groupby('type')['confidence'].mean().round(3))
+
+    if st.button("Clear Session Analytics"):
+        st.session_state.violation_history = []
+        st.rerun()
+else:
+    st.info("No violations recorded yet this session. Upload and analyze images to see analytics here.")

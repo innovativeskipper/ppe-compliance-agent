@@ -10,3 +10,4 @@ __pycache__/
 !package.json
 compliance_report.txt
 .agents/
+.devcontainers/
